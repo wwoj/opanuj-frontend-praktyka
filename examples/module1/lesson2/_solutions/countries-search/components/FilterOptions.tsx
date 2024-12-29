@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterType } from '../types';
+import type { FilterType } from '../types';
 
 interface FilterOptionsProps {
   filterType: FilterType;

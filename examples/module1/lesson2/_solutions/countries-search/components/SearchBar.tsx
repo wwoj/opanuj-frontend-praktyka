@@ -1,6 +1,6 @@
 import { debounce } from 'es-toolkit';
 import React, { useCallback, useState } from 'react';
-import { FilterType } from '../types';
+import type { FilterType } from '../types';
 
 interface SearchBarProps {
   searchTerm: string;

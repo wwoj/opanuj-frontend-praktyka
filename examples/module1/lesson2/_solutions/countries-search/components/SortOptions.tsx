@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortOrder } from '../types';
+import type { SortOrder } from '../types';
 
 interface SortOptionsProps {
   sortOrder: SortOrder;

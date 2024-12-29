@@ -1,5 +1,5 @@
 import React from 'react';
-import { Country } from '../types';
+import type { Country } from '../types';
 
 interface CountryCardProps {
   country: Country;
