@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-// import { CartContext } from '../contexts/CartContext';
-// import { ProductContext } from '../contexts/ProductContext';
-import { addToCart } from '../state/cartSlice';
 import { useAppDispatch, useGetProductByIdQuery } from '../hooks/rtk';
+import { addToCart } from '../state/cartSlice';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,7 +12,7 @@ const ProductDetails = () => {
     isLoading,
   } = useGetProductByIdQuery(Number(id));
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <section className="h-screen flex justify-center items-center">
         Loading...
@@ -29,6 +27,7 @@ const ProductDetails = () => {
       </section>
     );
   }
+
   const { title, price, description, image } = product;
   return (
     <section

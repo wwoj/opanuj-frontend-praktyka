@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 import { IoMdClose } from 'react-icons/io';
 import { Link } from 'react-router-dom';
@@ -31,26 +31,26 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
           Shopping Bag (
           <span data-testid="cart-count-sidebar">{cartItems.length}</span>)
         </div>
-        <div
+        <button
           onClick={() => setIsSidebarOpen(false)}
-          className="cursor-poniter w-8 h-8 flex justify-center items-center"
+          className="cursor-pointer w-8 h-8 flex justify-center items-center"
         >
           <IoMdClose className="text-2xl cursor-pointer" />
-        </div>
+        </button>
       </div>
       <div className="flex flex-col gap-y-2 h-[360px] md:h-[480px] lg:h-[420px] overflow-y-auto overflow-x-hidden border-b">
         {cartItems.map((item) => {
           return <CartItem item={item} key={item.id} />;
         })}
       </div>
-      <div className="flex flex-col gap-y-3  mt-4">
+      <div className="flex flex-col gap-y-3 mt-4">
         <div className="flex w-full justify-between items-center">
           <div className="font-semibold">
             <span className="mr-2">Subtotal:</span> $ {total.toFixed(2)}
           </div>
           <button
             onClick={() => dispatch(clearCart())}
-            className="py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
             aria-label="Clear cart"
           >
             <FiTrash2 />
