@@ -1,7 +1,7 @@
 import { memo, useContext } from 'react';
 import Product from '../components/Product';
 import { ProductContext } from '../contexts/ProductContext';
-import { Product as ProductType } from '../types/Product';
+import type { Product as ProductType } from '../types/Product';
 
 const Home = () => {
   const { products } = useContext(ProductContext);
