@@ -1,9 +1,25 @@
-import { useContext } from 'react';
+import React from 'react';
 import Product from '../components/Product';
-import { ProductContext } from '../contexts/ProductContext';
+import { useGetProductsQuery } from '../hooks/rtk';
 
 const Home = () => {
-  const { products } = useContext(ProductContext);
+  const { data: products, error, isLoading } = useGetProductsQuery();
+
+  if (isLoading) {
+    return (
+      <section className="h-screen flex justify-center items-center">
+        Loading...
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="h-screen flex justify-center items-center">
+        Error fetching products.
+      </section>
+    );
+  }
 
   return (
     <div>
