@@ -19,6 +19,7 @@ export function SlowApp() {
 
   useEffect(() => {
     axios.get(batchAPI).then(({ data: { articles, authors, comments } }) => {
+      alert('wtf');
       setArticles(articles);
       setAuthors(authors);
       setComments(comments);

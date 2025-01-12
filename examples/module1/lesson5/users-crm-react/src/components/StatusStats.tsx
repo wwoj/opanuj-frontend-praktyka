@@ -12,6 +12,7 @@ const StatusStats = () => {
       const response = await fetch('http://localhost:3000/api/data/users');
       if (!response.ok) throw new Error('Failed to fetch users');
       const data = await response.json();
+      console.log('wtf');
       setUsers(data);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'An error occurred');

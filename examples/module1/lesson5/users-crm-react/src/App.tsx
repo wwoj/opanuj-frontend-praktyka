@@ -3,9 +3,16 @@ import UsersList from './components/UsersList';
 import StatusStats from './components/StatusStats';
 import AddUserDialog from './components/AddUserDialog';
 
+import { UserContainer } from './container/UserListContainer';
+
 function App() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  return (
+    <>
+      <UserContainer />
+    </>
+  );
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
