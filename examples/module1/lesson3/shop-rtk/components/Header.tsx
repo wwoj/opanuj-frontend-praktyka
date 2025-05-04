@@ -4,12 +4,17 @@ import { CiShop } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
 
+import { selectTotalCartItemsAmount } from '../state/cartSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/rtk';
+
 interface HeaderProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Header = ({ setIsSidebarOpen }: HeaderProps) => {
   const { itemAmount } = useContext(CartContext);
+
+  const totalCartItemsAmount = useAppSelector(selectTotalCartItemsAmount);
 
   return (
     <header className={`bg-none py-6 fixed w-full z-10 lg:px-8 transition-all`}>
@@ -27,7 +32,7 @@ const Header = ({ setIsSidebarOpen }: HeaderProps) => {
             className="bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center"
             data-testid="cart-count"
           >
-            {itemAmount}
+            {totalCartItemsAmount}
           </div>
         </button>
       </div>

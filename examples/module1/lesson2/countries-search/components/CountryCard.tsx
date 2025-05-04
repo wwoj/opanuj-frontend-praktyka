@@ -21,7 +21,7 @@ export const CountryCard = ({ country }: CountryCardProp) => {
             {country.name.common}
           </h2>
           {country.population && (
-            <p className="text-gray-600">
+            <p className="text-gray-600" data-testid="country-population">
               🧑‍🧑‍🧒‍🧒 {country.population.toLocaleString()}
             </p>
           )}
