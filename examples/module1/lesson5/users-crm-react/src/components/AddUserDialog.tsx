@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../context/userContext';
 
 interface AddUserDialogProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ const AddUserDialog = ({ isOpen, onClose }: AddUserDialogProps) => {
   const [status, setStatus] = useState('New');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { addUser, isAdding } = useContext(UserContext);
 
   const statuses = [
     'New',
@@ -28,25 +30,20 @@ const AddUserDialog = ({ isOpen, onClose }: AddUserDialogProps) => {
       return;
     }
 
-    setLoading(true);
     setError(null);
-
+    const newUser = {
+      id: Date.now(),
+      name,
+      status,
+    };
     try {
-      const response = await fetch('http://localhost:3000/api/data/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, status }),
-      });
-
-      if (!response.ok) throw new Error('Failed to add user');
-
-      closeDialog();
+      setLoading(true);
+      await addUser(newUser);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to add user');
     } finally {
       setLoading(false);
+      closeDialog();
     }
   };
 
