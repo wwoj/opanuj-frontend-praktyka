@@ -12,8 +12,27 @@ describe('Form validation', () => {
     expect(errors).toContain('Last name is required');
   });
 
+  test('should return an error if last name is space', () => {
+    const errors = formValidator('John', '  ', 30);
+    expect(errors).toContain('Last name is required');
+  });
+
   test('should return an error if age is negative', () => {
     const errors = formValidator('John', 'Doe', -1);
     expect(errors).toContain('Age must be a positive number');
+  });
+
+  test('should return an error equal to null', () => {
+    const errors = formValidator('John', 'Doe', 1);
+    expect(errors).toHaveLength(0);
+  });
+
+  test('should return an error whane age is string', () => {
+    const errors = formValidator('John', 'Doe', 'null');
+    expect(errors).toContain('Age must be a number');
+  });
+  test('should return an error whane age is string', () => {
+    const errors = formValidator('John', 'Doe', null);
+    expect(errors).toContain('Age must be a number');
   });
 });

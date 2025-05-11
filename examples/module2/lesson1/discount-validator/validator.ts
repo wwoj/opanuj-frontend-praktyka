@@ -5,12 +5,16 @@ export function formValidator(
 ) {
   const errors: string[] = [];
 
-  if (!firstName) {
+  if (!firstName || firstName.trim().length < 1) {
     errors.push('First name is required');
   }
 
-  if (!lastName) {
+  if (!lastName || lastName.trim().length < 1) {
     errors.push('Last name is required');
+  }
+
+  if (age == null || isNaN(Number(age))) {
+    errors.push('Age must be a number');
   }
 
   if (age < 0) {
