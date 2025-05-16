@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 dotenv.config();
 
+// const BASE_URL = 'http://localhost:3000';
 const BASE_URL = 'https://en.wikipedia.org';
-const PROJECT_DIR = './module2/lesson2/base';
+const PROJECT_DIR = './module2/lesson2/extended';
 const SETUP_PATH_REGEX = '**/*.setup.ts';
 const LOGGED_IN_PATH_REGEX = '**/logged-in/*.spec.ts';
 
@@ -31,24 +32,22 @@ export default defineConfig({
     navigationTimeout: process.env.CI ? 30000 : 15000,
   },
   outputDir: `${PROJECT_DIR}/playwright/test-results`,
-  projects: isRunningExtended
-    ? undefined
-    : [
-        {
-          name: 'setup',
-          testMatch: SETUP_PATH_REGEX,
-        },
-        {
-          name: 'e2e tests - logged in',
-          dependencies: ['setup'],
-          testMatch: LOGGED_IN_PATH_REGEX,
-          use: {
-            storageState: STORAGE_STATE,
-          },
-        },
-        {
-          name: 'e2e tests',
-          testIgnore: [SETUP_PATH_REGEX, LOGGED_IN_PATH_REGEX],
-        },
-      ],
+  projects: [
+    {
+      name: 'setup',
+      testMatch: SETUP_PATH_REGEX,
+    },
+    {
+      name: 'e2e tests - logged in',
+      dependencies: ['setup'],
+      testMatch: LOGGED_IN_PATH_REGEX,
+      use: {
+        storageState: STORAGE_STATE,
+      },
+    },
+    {
+      name: 'e2e tests',
+      testIgnore: [SETUP_PATH_REGEX, LOGGED_IN_PATH_REGEX],
+    },
+  ],
 });

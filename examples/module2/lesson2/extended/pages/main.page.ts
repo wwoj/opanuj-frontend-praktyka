@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import type { Locator, Page } from '@playwright/test';
 import { URLs } from '../utils/constants';
 
 export class MainPage {
@@ -40,6 +40,19 @@ export class MainPage {
     await linkToFeaturedArticle.click();
 
     return this.page.waitForURL(`**${articleHref}`);
+  }
+
+  async goToCommunityPortal() {
+    // Używamy locatora CSS do selekcji <a> z title
+    const linkToCommunityPortal = this.page
+      .locator('a[title="The hub for editors"]')
+      .first();
+
+    const communityHref = (await linkToCommunityPortal.getAttribute('href'))!;
+
+    await linkToCommunityPortal.click();
+
+    return this.page.waitForURL(`**${communityHref}`);
   }
 
   async searchFor(term: string) {
